@@ -1,0 +1,71 @@
+#### **Index.html**
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alimentos para Mascotas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Alimentos para Mascotas</h1>
+        <p>¡Compra productos de calidad para tus mascotas!</p>
+    </header>
+
+    <section id="catalogo">
+        <h2>Catálogo de Productos</h2>
+        <div class="producto">
+            <img src="imagen-perro.jpg" alt="Alimento para perros">
+            <h3>Alimento seco para perros</h3>
+            <p>$15.00</p>
+            <p>Ingredientes: carne, vegetales, cereales</p>
+            <button onclick="agregarAlCarrito('Alimento seco para perros', 15.00)">Añadir al carrito</button>
+        </div>
+        <div class="producto">
+            <img src="imagen-gato.jpg" alt="Alimento para gatos">
+            <h3>Alimento húmedo para gatos</h3>
+            <p>$12.00</p>
+            <p>Ingredientes: pescado, frutas, vitaminas</p>
+            <button onclick="agregarAlCarrito('Alimento húmedo para gatos', 12.00)">Añadir al carrito</button>
+        </div>
+    </section>
+
+    <section id="carrito">
+        <h2>Tu carrito</h2>
+        <div id="items-carrito"></div>
+        <p>Total: <span id="total">$0.00</span></p>
+        <button onclick="procesarPago()">Procesar pago</button>
+    </section>
+
+    <footer>
+        <p>Contacto: contacto@mascotas.com | Teléfono: 123-456-7890</p>
+    </footer>
+
+    <script>
+        let carrito = [];
+        let total = 0;
+
+        function agregarAlCarrito(nombre, precio) {
+            carrito.push({ nombre, precio });
+            total += precio;
+            actualizarCarrito();
+        }
+
+        function actualizarCarrito() {
+            const items = document.getElementById('items-carrito');
+            items.innerHTML = '';
+            carrito.forEach((item, index) => {
+                items.innerHTML += `<div>${item.nombre} - $${item.precio.toFixed(2)}</div>`;
+            });
+            document.getElementById('total').textContent = total.toFixed(2);
+        }
+
+        function procesarPago() {
+            alert("¡Gracias por tu compra! Por favor, contacta a contacto@mascotas.com para confirmar el pago.");
+        }
+    </script>
+</body>
+</html>
+```
